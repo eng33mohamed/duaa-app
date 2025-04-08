@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <titl>{دعاء للمتوفى}</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom:20px;
+            color: #4800ff;
+        }
+
+        .name-input {
+            margin-bottom: 20px;
+        }
+
+        .name-input input {
+            padding: 10px;
+            font-size: 1.2em;
+            width: 50%;
+            border: 2px solid #4800ff;
+            border-radius: 5px;
+        }
+
+        .duas {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            justify-items: center;
+        }
+
+        .dua {
+            width: 200px;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #ffd800;
+            border-radius: 50%;
+            color: black;
+            font-size: 1.2em;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s;
+            position: relative;
+        }
+
+        .dua:hover {
+            background-color: #b6ff00;
+        }
+
+        .count {
+            position: absolute;
+            font-size: 1.5em;
+            bottom: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>دعاء للمتوفى</h1>
+        <div class="name-input">
+            <input type="text" id="userName" placeholder="أدخل اسم الشخص المتوفى" oninput="updateName()">
+        </div>
+        <div class="duas">
+            <div class="dua" id="dua1" onclick="incrementCount('count1')">
+                <p>اللهم اغفر له وارحمه</p>
+                <div class="count" id="count1">0</div>
+            </div>
+            <div class="dua" id="dua2" onclick="incrementCount('count2')">
+                <p>اللهم اجعل قبره روضة من رياض الجنة</p>
+                <div class="count" id="count2">0</div>
+            </div>
+            <div class="dua" id="dua3" onclick="incrementCount('count3')">
+                <p>اللهم ادخله الفردوس الاعلى يا رب العالمين</p>
+                <div class="count" id="count3">0</div>
+            </div>
+            <div class="dua" id="dua4" onclick="incrementCount('count4')">
+                <p>اللهم ارزقنا لقاءه في الجنة</p>
+                <div class="count" id="count4">0</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let counts = {
+            count1: 0,
+            count2: 0,
+            count3: 0,
+            count4: 0
+        };
+
+        function incrementCount(countId) {
+            counts[countId]++;
+            document.getElementById(countId).textContent = counts[countId];
+            displayUserName(countId);
+        }
+
+        function displayUserName(countId) {
+            const userName = document.getElementById('userName').value.trim();
+            if (userName) {
+                document.getElementById(countId).textContent = `${userName} - ${counts[countId]}`;
+            }
+        }
+
+        function updateName() {
+            Object.keys(counts).forEach(countId => {
+                displayUserName(countId);
+            });
+        }
+    </script>
+</body>
+</html>
